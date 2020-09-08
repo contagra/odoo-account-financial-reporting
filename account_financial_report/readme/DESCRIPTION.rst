@@ -1,5 +1,5 @@
 This module adds a set of financial reports. They are accessible under
-Invoicing / Reporting / OCA accounting reports.
+Invoicing / Reporting / Accounting Reports.
 
 - General ledger
 - Trial Balance

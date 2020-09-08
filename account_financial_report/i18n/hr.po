@@ -1187,8 +1187,8 @@ msgid "Not only one unaffected earnings account"
 msgstr ""
 
 #. module: account_financial_report
-#: model:ir.ui.menu,name:account_financial_report.menu_oca_reports
-msgid "OCA accounting reports"
+#: model:ir.ui.menu,name:account_financial_report.menu_accounting_reports
+msgid "Accounting Reports"
 msgstr ""
 
 #. module: account_financial_report

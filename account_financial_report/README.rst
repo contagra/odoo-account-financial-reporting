@@ -26,7 +26,7 @@ Account Financial Reports
 |badge1| |badge2| |badge3| |badge4| |badge5| 
 
 This module adds a set of financial reports. They are accessible under
-Invoicing / Reporting / OCA accounting reports.
+Invoicing / Reporting / Accounting Reports.
 
 - General ledger
 - Trial Balance
