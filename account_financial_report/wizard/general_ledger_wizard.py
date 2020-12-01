@@ -3,11 +3,12 @@
 # Author: Jordi Ballester
 # Copyright 2016 Camptocamp SA
 # Copyright 2017 Akretion - Alexis de Lattre
-# Copyright 2017 Eficent Business and IT Consulting Services, S.L.
+# Copyright 2017 ForgeFlow, S.L.
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 
 import time
+from ast import literal_eval
 
 from odoo import _, api, fields, models
 from odoo.exceptions import ValidationError
@@ -20,12 +21,6 @@ class GeneralLedgerReportWizard(models.TransientModel):
     _description = "General Ledger Report Wizard"
     _inherit = "account_financial_report_abstract_wizard"
 
-    company_id = fields.Many2one(
-        comodel_name="res.company",
-        default=lambda self: self.env.user.company_id,
-        required=False,
-        string="Company",
-    )
     date_range_id = fields.Many2one(comodel_name="date.range", string="Date range")
     date_from = fields.Date(required=True, default=lambda self: self._init_date_from())
     date_to = fields.Date(required=True, default=fields.Date.context_today)
@@ -87,6 +82,15 @@ class GeneralLedgerReportWizard(models.TransientModel):
     )
     show_partner_details = fields.Boolean(string="Show Partner Details", default=True,)
     show_cost_center = fields.Boolean(string="Show Analytic Account", default=True,)
+    domain = fields.Char(
+        string="Journal Items Domain",
+        default=[],
+        help="This domain will be used to select specific domain for Journal " "Items",
+    )
+
+    def _get_account_move_lines_domain(self):
+        domain = literal_eval(self.domain) if self.domain else []
+        return domain
 
     @api.onchange("account_code_from", "account_code_to")
     def on_change_account_range(self):
@@ -109,8 +113,9 @@ class GeneralLedgerReportWizard(models.TransientModel):
     def _init_date_from(self):
         """set start date to begin of current year if fiscal year running"""
         today = fields.Date.context_today(self)
-        last_fsc_month = self.env.user.company_id.fiscalyear_last_month
-        last_fsc_day = self.env.user.company_id.fiscalyear_last_day
+        company = self.company_id or self.env.company
+        last_fsc_month = company.fiscalyear_last_month
+        last_fsc_day = company.fiscalyear_last_day
 
         if (
             today.month < int(last_fsc_month)
@@ -311,6 +316,7 @@ class GeneralLedgerReportWizard(models.TransientModel):
             "fy_start_date": self.fy_start_date,
             "unaffected_earnings_account": self.unaffected_earnings_account.id,
             "account_financial_report_lang": self.env.lang,
+            "domain": self._get_account_move_lines_domain(),
         }
 
     def _export(self, report_type):

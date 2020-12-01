@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 13.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2020-08-22 01:59+0000\n"
+"PO-Revision-Date: 2020-10-05 20:16+0000\n"
 "Last-Translator: Ignacio Buioli <ibuioli@gmail.com>\n"
 "Language-Team: none\n"
 "Language: es_AR\n"
@@ -168,6 +168,11 @@ msgstr "Cuentas"
 #: model:ir.model.fields,field_description:account_financial_report.field_general_ledger_report_wizard__centralize
 msgid "Activate centralization"
 msgstr "Activar centralización"
+
+#. module: account_financial_report
+#: model_terms:ir.ui.view,arch_db:account_financial_report.general_ledger_wizard
+msgid "Additional Filtering"
+msgstr "Filtros Adicionales"
 
 #. module: account_financial_report
 #: model_terms:ir.ui.view,arch_db:account_financial_report.report_aged_partner_balance_move_lines
@@ -417,6 +422,7 @@ msgstr "Código"
 
 #. module: account_financial_report
 #: code:addons/account_financial_report/report/journal_ledger_xlsx.py:0
+#: model:ir.model.fields,field_description:account_financial_report.field_account_financial_report_abstract_wizard__company_id
 #: model:ir.model.fields,field_description:account_financial_report.field_aged_partner_balance_report_wizard__company_id
 #: model:ir.model.fields,field_description:account_financial_report.field_general_ledger_report_wizard__company_id
 #: model:ir.model.fields,field_description:account_financial_report.field_journal_ledger_report_wizard__company_id
@@ -1040,6 +1046,11 @@ msgid "Journal Item"
 msgstr "Elemento del Diario"
 
 #. module: account_financial_report
+#: model:ir.model.fields,field_description:account_financial_report.field_general_ledger_report_wizard__domain
+msgid "Journal Items Domain"
+msgstr "Dominio de los Apuntes Contables"
+
+#. module: account_financial_report
 #: code:addons/account_financial_report/report/journal_ledger_xlsx.py:0
 #: model:ir.actions.act_window,name:account_financial_report.action_journal_ledger_wizard
 #: model:ir.actions.report,name:account_financial_report.action_print_journal_ledger_wizard_html
@@ -1602,6 +1613,13 @@ msgstr ""
 #, python-format
 msgid "The hierarchy level to filter on must be greater than 0."
 msgstr "El nivel de jerarquía a filtrar debe ser mayor que 0."
+
+#. module: account_financial_report
+#: model:ir.model.fields,help:account_financial_report.field_general_ledger_report_wizard__domain
+msgid "This domain will be used to select specific domain for Journal Items"
+msgstr ""
+"Este dominio se utilizará para seleccionar un dominio específico para los "
+"Apuntes Contables"
 
 #. module: account_financial_report
 #: model_terms:ir.ui.view,arch_db:account_financial_report.report_trial_balance_filters
