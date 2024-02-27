@@ -11,62 +11,66 @@
                 position="after"
             >
                 <block title="Partner Statement" name="partner_statement_setting_container">
-                    <setting id="partner_statement" string="Main Currency" company_dependent="1"
-                             help="Main currency of your company"
-                             documentation="/applications/finance/accounting/others/multi_currency.html">
-                        <setting>
-                            <field name="group_activity_statement"/>
-                        </setting>
-                        <setting>
-                            <label for="group_activity_statement"/>
-                            <div class="text-muted">
-                                Activity Statements show all transactions between two dates.
+                    <setting>
+                        <field name="group_activity_statement"/>
+                        <label for="group_activity_statement"/>
+                        <div class="text-muted">
+                            Activity Statements show all transactions between two dates.
+                        </div>
+                        <div class="content-group"
+                             invisible="not group_activity_statement and not group_outstanding_statement"
+                        >
+                            <div class="row mt16">
+                                <label
+                                    for="default_aging_type"
+                                    class="col-lg-3 o_light_label"
+                                />
+                                <field name="default_aging_type"/>
                             </div>
-                            <div
-                                class="content-group"
-                                invisible="group_activity_statement == False or group_outstanding_statement == False"
-                            >
-                                <div class="row mt16">
-                                    <label
-                                        for="default_aging_type"
-                                        class="col-lg-3 o_light_label"
-                                    />
-                                    <field name="default_aging_type"/>
-                                </div>
-                                <div>
-                                    <field
-                                        name="default_show_aging_buckets"
-                                        class="oe_inline"
-                                    />
-                                    <label
-                                        for="default_show_aging_buckets"
-                                        class="o_light_label"
-                                    />
-                                </div>
-                                <div>
-                                    <field
-                                        name="default_filter_partners_non_due"
-                                        class="oe_inline"
-                                    />
-                                    <label
-                                        for="default_filter_partners_non_due"
-                                        class="o_light_label"
-                                    />
-                                </div>
-                                <div>
-                                    <field
-                                        name="default_filter_negative_balances"
-                                        class="oe_inline"
-                                    />
-                                    <label
-                                        for="default_filter_negative_balances"
-                                        class="o_light_label"
-                                    />
-                                </div>
+                            <div>
+                                <field
+                                    name="default_show_aging_buckets"
+                                    class="oe_inline"
+                                />
+                                <label
+                                    for="default_show_aging_buckets"
+                                    class="o_light_label"
+                                />
                             </div>
-                        </setting>
+                            <div>
+                                <field
+                                    name="default_filter_partners_non_due"
+                                    class="oe_inline"
+                                />
+                                <label
+                                    for="default_filter_partners_non_due"
+                                    class="o_light_label"
+                                />
+                            </div>
+                            <div>
+                                <field
+                                    name="default_filter_negative_balances"
+                                    class="oe_inline"
+                                />
+                                <label
+                                    for="default_filter_negative_balances"
+                                    class="o_light_label"
+                                />
+                            </div>
+                        </div>
                     </setting>
                     <setting>
+                        <field name="group_outstanding_statement"/>
+                        <label for="group_outstanding_statement"/>
+                        <div class="text-muted">
+                            Outstanding Statements show all transactions up to a date.
+                        </div>
+                        <div
+                            class="text-muted"
+                            invisible="not group_outstanding_statement"
+                        >
+                            Please set defaults under Activity Statements.
+                        </div>
                     </setting>
                 </block>
             </xpath>
